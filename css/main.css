@@ -1,0 +1,44 @@
+
+
+
+.parent 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #24353f;
+}
+
+.child , .child2
+{
+    width: 800px;
+    height:450px;
+    background-color: #24353f;
+    box-shadow: -5px 2px 54px -9px rgb(0 0 0);
+}
+
+.log-out-page
+{
+    background-color: #24353f;
+    box-shadow: -5px 2px 54px -9px rgb(0 0 0);
+    width: 800px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a{
+    cursor: pointer;
+}
+a:hover
+{
+    text-decoration: underline !important;
+}
+
+.child2
+{
+    position: absolute;
+    inset: 0;
+}
+
+
