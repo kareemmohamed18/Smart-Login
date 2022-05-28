@@ -59,6 +59,8 @@ if(JSON.parse(localStorage.getItem('MailList')) !=null)
 
 
 
+
+
 var inputs = document.querySelectorAll('#nameInput , #emailInput , #passwordInput');
 
 
@@ -77,7 +79,10 @@ for(var i=0 ; i<inputs.length ;i++)
             validSignUpinputs.classList.add('d-none');
             signUpBtn.disabled=true;
         }
+
     })
+
+
 }
 
 
@@ -104,7 +109,8 @@ function validName()
 function validEmail()
 {
     var regex =  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if(regex.test(emailInput.value)==true)
+    
+    if(regex.test(emailInput.value)==true )
     {   
         emailInput.classList.add('is-valid');
         emailInput.classList.remove('is-invalid');
@@ -116,6 +122,8 @@ function validEmail()
         emailInput.classList.remove('is-valid');
         return false
     }
+
+    
 }
 
 
@@ -135,21 +143,84 @@ function validPassword()
         passwordInput.classList.remove('is-valid');
         return false
     }
+
+
 }
 
 
 
+function refrech ()
+{
+    signUpBtn.disabled=true;
+    passwordInput.classList.remove('is-valid');
+    emailInput.classList.remove('is-valid');
+    nameInput.classList.remove('is-valid');
+    validSignUpinputs.classList.add('d-none');
 
 
+}
 
+function difEmail()
+{
+    for(var i=0 ; i<mailContainer.length ; i++)
+    {
+        if(emailInput.value == mailContainer[i].email)
+        {
+
+            return true;
+        }
+    }
+}
 
 
 
 signUpBtn.addEventListener('click' , function()
 {   
+           if( difEmail())
+           {
+                validSignUpinputs.innerHTML="this email is used";
+                validSignUpinputs.classList.add('text-danger');
+                emailInput.classList.add('is-invalid')
+                signUpBtn.disabled=true;
+                return
+           }
+           else
+           {
+            validSignUpinputs.innerHTML="success";
+            validSignUpinputs.classList.remove('text-danger')
+            addMail();
+            clearForm();
+            refrech()
+           }
+            
 
-    addMail();
-    clearForm();
+    // for(var i=0 ; i<mailContainer.length ; i++)
+    // {
+    //     if(emailInput.value == mailContainer[i].email)
+    //     {
+    //         validSignUpinputs.innerHTML="this email is used";
+    //         signUpBtn.disabled=true;
+    //         console.log("true")
+    //     }
+    //     else if(emailInput.value != mailContainer[i].email)
+    //     {
+    //         addMail();
+    //         clearForm();
+    //         refrech()
+    //         return
+    //     }
+
+    // }
+
+//     if(JSON.parse(localStorage.getItem('MailList')) ==null)
+// {
+    
+//     addMail()
+//     clearForm();
+//     refrech()
+
+// }
+    
 })
 
 function addMail()
